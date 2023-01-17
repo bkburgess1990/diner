@@ -1,0 +1,11 @@
+{
+  "name": "bburgess/public_html/SDEV328/diner",
+  "authors": [
+    {"name": "Brandon Burgess",
+      "email": "burgess.brandon@student.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
