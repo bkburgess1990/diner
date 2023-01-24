@@ -19,7 +19,23 @@ $f3->route('GET /', function () {
     echo $view->render("views/dinerHome.html");
 });
 
+//define breakfast route
+$f3->route('GET /breakfast', function () {
 
+    //instantiate a view
+    $view = new Template();
+    echo $view->render("views/breakfast.html");
+});
+
+//define lunch route
+$f3->route('GET /lunch', function () {
+
+    //instantiate a view
+    $view = new Template();
+    echo $view->render("views/lunch.html");
+});
+
+//define a lunch route & page. Add image to both
 
 //run fat free
 $f3->run();
