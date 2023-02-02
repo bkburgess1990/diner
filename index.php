@@ -61,6 +61,12 @@ $f3->route('GET|POST /summary', function($f3) {
     echo $view->render("views/orderSummary.html");
 });
 
+$f3->route('GET|POST /orderForm2', function($f3) {
+    //instantiate a view
+    $view = new Template();
+    echo $view->render("views/orderForm2.html");
+});
+
 //define a lunch route & page. Add image to both
 
 //run fat free
