@@ -4,8 +4,13 @@
 
 body {
     background-color: #8789a5;
+    text-align: center;
 }
 
 h1 {
     color: coral;
+}
+
+.form-group{
+    text-align: center;
 }

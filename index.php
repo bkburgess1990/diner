@@ -17,7 +17,7 @@ require_once('vendor/autoload.php');
 $f3 = Base::instance();
 
 //define route
-$f3->route('GET /', function () {
+$f3->route('GET|POST /', function () {
 
     //instantiate a view
     $view = new Template();
@@ -25,7 +25,7 @@ $f3->route('GET /', function () {
 });
 
 //define breakfast route
-$f3->route('GET /breakfast', function () {
+$f3->route('GET|POST /breakfast', function () {
 
     //instantiate a view
     $view = new Template();
@@ -33,7 +33,7 @@ $f3->route('GET /breakfast', function () {
 });
 
 //define lunch route
-$f3->route('GET /lunch', function () {
+$f3->route('GET|POST /lunch', function () {
 
     //instantiate a view
     $view = new Template();
@@ -41,7 +41,7 @@ $f3->route('GET /lunch', function () {
 });
 
 //define order form route
-$f3->route('GET /order', function($f3) {
+$f3->route('GET|POST /order', function($f3) {
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['food'] = $_POST['food'];
@@ -53,6 +53,12 @@ $f3->route('GET /order', function($f3) {
     //instantiate a view
     $view = new Template();
     echo $view->render("views/orderForm1.html");
+});
+
+$f3->route('GET|POST /summary', function($f3) {
+    //instantiate a view
+    $view = new Template();
+    echo $view->render("views/orderSummary.html");
 });
 
 //define a lunch route & page. Add image to both
