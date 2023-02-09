@@ -7,16 +7,17 @@
 
   <form action="#" method="post" class="form-horizontal">
     <h3>Select Condiments</h3>
+    <repeat group="{{ @conds }}" value="{{ @cond }}">
 
-    <input type="checkbox" id="cond1" name="conds[]" value="Ketchup">
+    <input type="checkbox" id="cond1" name="conds[]" value="{{ @cond }}">
     <label for="cond1">Ketchup</label><br>
-    <input type="checkbox" id="cond2" name="conds[]" value="Mustard">
+    <input type="checkbox" id="cond2" name="conds[]" value="{{ @cond }}">
     <label for="cond2">Mustard</label><br>
-    <input type="checkbox" id="cond3" name="conds[]" value="BBQ">
+    <input type="checkbox" id="cond3" name="conds[]" value="{{ @cond }}">
     <label for="cond3">BBQ</label><br>
-    <input type="checkbox" id="cond4" name="conds[]" value="Mayo">
+    <input type="checkbox" id="cond4" name="conds[]" value="{{ @cond }}">
     <label for="cond4">Mayo</label><br>
-    <input type="checkbox" id="cond5" name="conds[]" value="Sriracha">
+    <input type="checkbox" id="cond5" name="conds[]" value="{{ @cond }}">
     <label for="cond5">Sriracha</label><br>
     <!-- submit button -->
     <div class="col-xs-3 ">

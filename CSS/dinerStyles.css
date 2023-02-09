@@ -14,3 +14,8 @@ h1 {
 .form-group{
     text-align: center;
 }
+
+.col-4 {
+    border: black 2px;
+    border-radius: 2%;
+}
