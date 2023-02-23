@@ -9,9 +9,6 @@ error_reporting(E_ALL);
 
 //require autoload file
 require_once('vendor/autoload.php');
-//require_once('model/dataLaye.php');
-require_once('model/validate.php');
-//require_once('classes/Order.php');
 //var_dump(getMeals());
 
 //Start session AFTER requiring autoload
@@ -35,11 +32,12 @@ session_start();
 //Instantiate F3 base class
 $f3 = Base::instance();
 
+//instantiate controller object
+$con = new Controller($f3);
+
 //define route
 $f3->route('GET|POST /', function () {
-    //instantiate a view
-    $view = new Template();
-    echo $view->render("views/dinerHome.html");
+    $GLOBALS['con']->home();
 });
 
 //define breakfast route
