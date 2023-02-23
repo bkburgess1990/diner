@@ -18,5 +18,5 @@
 
     function validMeal($meal)
     {
-        return in_array($meal, getMeals());
+        return in_array($meal, DataLayer::getMeals());
     }

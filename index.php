@@ -9,7 +9,7 @@ error_reporting(E_ALL);
 
 //require autoload file
 require_once('vendor/autoload.php');
-require_once('model/dataLaye.php');
+//require_once('model/dataLaye.php');
 require_once('model/validate.php');
 //require_once('classes/Order.php');
 //var_dump(getMeals());
@@ -61,7 +61,7 @@ $f3->route('GET|POST /order', function($f3) {
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $food = trim($_POST['food']);
-        if(validFood($food)){
+        if(Validation::$food){
             $_SESSION['food'] = $food;
         }
         else{
@@ -76,7 +76,7 @@ $f3->route('GET|POST /order', function($f3) {
 
         //validate meal
         $meal = $_POST['meal'];
-        if(validMeal($meal)) {
+        if(Validation::validFood($food)) {
             $_SESSION['meal'] = $meal;
         }
         else{
@@ -88,7 +88,7 @@ $f3->route('GET|POST /order', function($f3) {
         }
     }
     //Add meals to f3 hive
-    $f3->set("meals", getMeals());
+    $f3->set("meals", DataLayer::validMeal(getMeals()));
 
     //instantiate a view
     $view = new Template();
@@ -107,7 +107,8 @@ $f3->route('GET|POST /orderForm2', function($f3) {
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['conds'] = implode(", ",$_POST['conds']);
 //        $_SESSION['cond[]'] = $_POST['cond[]'];
-
+    //Add meals to f3 hive
+        $f3->set("conds", DataLayer::getConds());
         $f3->reroute('summary');
     }
 
