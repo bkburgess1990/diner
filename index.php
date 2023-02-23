@@ -5,15 +5,26 @@
 ini_set('display_errors',1);
 error_reporting(E_ALL);
 
-//Start session
-session_start();
+
 
 //require autoload file
 require_once('vendor/autoload.php');
-require_once('model/dataLayer.php');
+require_once('model/dataLaye.php');
 require_once('model/validate.php');
+//require_once('classes/Order.php');
 //var_dump(getMeals());
 
+//Start session AFTER requiring autoload
+session_start();
+
+//$myOrder = new Order();
+//$myOrder->setFood("Tacos ");
+//echo $myOrder->getFood();
+////var_dump($myOrder);
+//$myOrder->setMeal("Number 2 ");
+//echo $myOrder->getMeal();
+//$myOrder->setCondiments("Hella Ketchup");
+//echo $myOrder->getCondiments();
 //$food1 = "tacos";
 //$food2 = "";
 //$food3 = "x";
@@ -54,7 +65,7 @@ $f3->route('GET|POST /order', function($f3) {
             $_SESSION['food'] = $food;
         }
         else{
-            $f3->set('errors["food]', 'Food must have at least 2 characters.');
+            $f3->set('errors["food"]', 'Food must have at least 2 characters.');
         }
         $_SESSION['meal'] = $_POST['meal'];
 
@@ -76,7 +87,6 @@ $f3->route('GET|POST /order', function($f3) {
             $f3->reroute('orderForm2');
         }
     }
-
     //Add meals to f3 hive
     $f3->set("meals", getMeals());
 
@@ -85,11 +95,7 @@ $f3->route('GET|POST /order', function($f3) {
     echo $view->render("views/orderForm1.html");
 });
 
-$f3->route('GET|POST /summary', function($f3) {
-    //instantiate a view
-    $view = new Template();
-    echo $view->render("views/orderSummary.html");
-});
+
 
 $f3->route('GET|POST /orderForm2', function($f3) {
     //Add meals to f3 hive
@@ -99,11 +105,20 @@ $f3->route('GET|POST /orderForm2', function($f3) {
     echo $view->render("views/orderForm2.html");
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $_SESSION['cond[]'] = $_POST['cond[]'];
+        $_SESSION['conds'] = implode(", ",$_POST['conds']);
+//        $_SESSION['cond[]'] = $_POST['cond[]'];
 
         $f3->reroute('summary');
     }
 
+});
+
+$f3->route('GET|POST /summary', function($f3) {
+    //instantiate a view
+    $view = new Template();
+    echo $view->render("views/orderSummary.html");
+
+    session_destroy();
 });
 
 //run fat free
