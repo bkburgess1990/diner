@@ -5,33 +5,21 @@
 ini_set('display_errors',1);
 error_reporting(E_ALL);
 
-
-
 //require autoload file
 require_once('vendor/autoload.php');
 //var_dump(getMeals());
 
+
 //Start session AFTER requiring autoload
 session_start();
-
-//$myOrder = new Order();
-//$myOrder->setFood("Tacos ");
-//echo $myOrder->getFood();
-////var_dump($myOrder);
-//$myOrder->setMeal("Number 2 ");
-//echo $myOrder->getMeal();
-//$myOrder->setCondiments("Hella Ketchup");
-//echo $myOrder->getCondiments();
-//$food1 = "tacos";
-//$food2 = "";
-//$food3 = "x";
-//echo validFood($food1) ? "valid " : "not valid ";
-//echo validFood($food2) ? "valid " : "not valid ";
-//echo validFood($food3) ? "valid " : "not valid ";
+//test datalayer class
+$dataLayer = new DataLayer();
+$myOrder = new Order("Salad", "Lunch", "Sriracha");
+$id = $dataLayer->saveOrder($myOrder);
+echo "$id inserted successfully";
 
 //Instantiate F3 base class
 $f3 = Base::instance();
-
 //instantiate controller object
 $con = new Controller($f3);
 
@@ -93,8 +81,6 @@ $f3->route('GET|POST /order', function($f3) {
     echo $view->render("views/orderForm1.html");
 });
 
-
-
 $f3->route('GET|POST /orderForm2', function($f3) {
     //Add meals to f3 hive
     $f3->set("conds", getCond());
@@ -109,7 +95,6 @@ $f3->route('GET|POST /orderForm2', function($f3) {
         $f3->set("conds", DataLayer::getConds());
         $f3->reroute('summary');
     }
-
 });
 
 $f3->route('GET|POST /summary', function($f3) {
